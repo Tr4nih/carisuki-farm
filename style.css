@@ -102,6 +102,15 @@ body{
 
 
 /* navbar */
+.fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: inherit;
+    z-index: 1000;
+    box-shadow: 0 0 5px #394647;
+}
 
 .navbar {
     display: flex;
@@ -225,13 +234,15 @@ body{
 
   #nabar{
     top: 0;
+    transition: top 0.5s ease-in-out;
   }
+ 
   
 /* end navbar */
 
 
-  /* home */
-  #home{
+  /* home title*/
+  #text{
     margin: auto;
     margin-top: 10%;
   }
@@ -250,5 +261,33 @@ body{
     .home-title h1{
         margin-bottom: 5%;
     }
-    
+
+  /* home title*/
+
+
+  /* home */
+    .home-about{
+        display: flex;
+        margin-top: 10%;
+        gap: 5%;
+        margin: 10%;
+       
+    }
+
+    .home-location{
+        display: flex;
+        flex-direction: column;
+        color: var(--text-color);
+        
+    }
+
+    .home-image {
+        display: flex;
+       
+    }
+
+    .home-image img{
+        width: 50%;
+      
+    }
   /* end home */
