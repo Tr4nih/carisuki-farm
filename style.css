@@ -268,14 +268,15 @@ body{
   /* home title*/
 
 
-  /* home */
+ 
   #carousel {
     display: flex;
-    overflow-x: scroll; /* Memungkinkan pengguliran horizontal */
-    scroll-behavior: smooth; /* Pergerakan gulir yang halus */
-    width: 100%; /* Pastikan lebar penuh */
+    overflow-x: scroll; 
+    scroll-behavior: smooth; 
+    width: 100%; 
     overflow: hidden;
    
+
 }
 
     .home-about{
@@ -284,7 +285,7 @@ body{
         margin-top: 10%;
         gap: 5%;
         margin: 10%;
-        min-width: 100%; /* Agar setiap section menempati 100% lebar viewport */
+        min-width: 100%; 
        
     }
 
@@ -312,5 +313,5 @@ body{
     .home-image img{
         width: 50%;
       border-radius: 5%;
+      user-select: none;
     }
-  /* end home */
