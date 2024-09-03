@@ -14,6 +14,6 @@ document.addEventListener("DOMContentLoaded", function() {
         requestAnimationFrame(checkScroll);
     });
 
-    // Initial check in case the page is loaded at a scroll position
+   
     checkScroll();
 });

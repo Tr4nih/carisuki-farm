@@ -113,10 +113,11 @@ body{
 }
 
 .navbar {
+    transition: top 0.3s ease-in-out;
     display: flex;
     text-align: center;
     justify-content: space-around;
-    
+
 }
 
 .navbar a{
@@ -168,8 +169,7 @@ body{
 }
 
 
-/* From Uiverse.io by nikk7007 */ 
-/* From Uiverse.io by alexmaracinaru */ 
+
 .cta {
     position: relative;
    
@@ -242,20 +242,23 @@ body{
 
 
   /* home title*/
-  #text{
-    margin: auto;
-    margin-top: 10%;
-  }
+ #home{
+    margin-top: 15%;
+ }
     .home-text{
         color: var(--text-color);
         display: flex;
         flex-direction: column;
-        gap: 10px;
+        width: 50%;
+        justify-content: center;
+        align-items: center; /* Tambahkan ini */
         text-align: center;
         font-family: "Staatliches", sans-serif;
         font-weight: 400;
+        margin-top: 10%;
         font-style: normal;
         letter-spacing: 0.05em;
+        margin: 10% auto; /* Ubah ini */
     }
 
     .home-title h1{
@@ -266,11 +269,22 @@ body{
 
 
   /* home */
+  #carousel {
+    display: flex;
+    overflow-x: scroll; /* Memungkinkan pengguliran horizontal */
+    scroll-behavior: smooth; /* Pergerakan gulir yang halus */
+    width: 100%; /* Pastikan lebar penuh */
+    overflow: hidden;
+   
+}
+
     .home-about{
+       
         display: flex;
         margin-top: 10%;
         gap: 5%;
         margin: 10%;
+        min-width: 100%; /* Agar setiap section menempati 100% lebar viewport */
        
     }
 
@@ -280,14 +294,23 @@ body{
         color: var(--text-color);
         
     }
+    .home-location-text h1{
+        margin-bottom: 5%;
+    }
+
+    .home-location-text p:nth-child(4){
+        margin-bottom: 5%;
+    }
+
 
     .home-image {
         display: flex;
+        gap: 10%;
        
     }
 
     .home-image img{
         width: 50%;
-      
+      border-radius: 5%;
     }
   /* end home */
