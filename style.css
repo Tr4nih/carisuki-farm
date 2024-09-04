@@ -315,3 +315,77 @@ body{
       border-radius: 5%;
       user-select: none;
     }
+
+    .footer {
+        background-color: #f8f8f8; /* Warna latar belakang footer */
+        padding: 40px 0;
+        color: #000; /* Warna teks */
+    }
+    
+    .footer-content {
+        display: flex;
+        justify-content: space-between;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+    
+    .footer-section {
+        width: 45%;
+    }
+    
+    .company-info h2 {
+        font-family: "Staatliches", sans-serif;
+        font-weight: 400;
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+    
+    .site-map h2 {
+        font-size: 20px;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+    
+    .site-map ul {
+        list-style: none;
+        padding: 0;
+    }
+    
+    .site-map ul li {
+        margin-bottom: 10px;
+    }
+    
+    .site-map ul li a {
+        text-decoration: none;
+        color: #000; /* Warna teks link */
+        font-size: 16px;
+    }
+    
+    .site-map ul li a:hover {
+        text-decoration: underline;
+    }
+    
+    .social-media a {
+        display: inline-block;
+        margin-right: 10px;
+    }
+    
+    .social-media a img {
+        width: 24px;
+        height: 24px;
+    }
+
+    .footer p{
+        font-family: "Staatliches", sans-serif;
+        font-weight: 400;
+    }
+
+    .footer{
+        font-family: "Staatliches", sans-serif;
+    }
+
+    .follow{
+        padding-top: 35px;
+    }
