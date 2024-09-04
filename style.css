@@ -172,7 +172,7 @@ body{
 
 .cta {
     position: relative;
-   
+    
     padding: 12px 18px;
     transition: all 0.2s ease;
     border: none;
@@ -185,6 +185,7 @@ body{
     content: "";
     position: absolute;
     margin-top: 12px;
+   
     top: 0;
     left: 0;
     display: block;
@@ -197,7 +198,6 @@ body{
   
   .cta span {
     position: relative;
-   
     font-size: 18px;
     font-family: "Staatliches", sans-serif;
     font-weight: 400;
@@ -205,6 +205,8 @@ body{
     letter-spacing: 0.05em;
     color: var(--text-color);
   }
+
+
   
   .cta svg {
     position: relative;
@@ -223,6 +225,7 @@ body{
     width: 100%;
     background: var(--text-judul);
   }
+
   
   .cta:hover svg {
     transform: translateX(0);
@@ -259,6 +262,7 @@ body{
         font-style: normal;
         letter-spacing: 0.05em;
         margin: 10% auto; /* Ubah ini */
+        margin-bottom: 15%;
     }
 
     .home-title h1{
@@ -268,25 +272,36 @@ body{
   /* home title*/
 
 
- 
-  #carousel {
-    display: flex;
-    overflow-x: scroll; 
-    scroll-behavior: smooth; 
-    width: 100%; 
+  #home-carousel, #product-carousel {
+    overflow-x: scroll;
+    white-space: nowrap;
     overflow: hidden;
-   
-
+    cursor: grab;
 }
+
+#home-carousel.active, #product-carousel.active {
+    cursor: grabbing;
+}
+
+.home-image img, .product-image img {
+    display: inline-block;
+    width: 200px; 
+  
+}
+
+
 
     .home-about{
        
         display: flex;
-        margin-top: 10%;
+        margin-top: 20%;
         gap: 5%;
         margin: 10%;
         min-width: 100%; 
-       
+       font-family: "Staatliches", sans-serif;
+        font-weight: 400;
+        font-style: normal;
+    
     }
 
     .home-location{
@@ -306,15 +321,64 @@ body{
 
     .home-image {
         display: flex;
-        gap: 10%;
-       
+        gap: 5%;
     }
 
     .home-image img{
         width: 50%;
-      border-radius: 5%;
       user-select: none;
     }
+
+
+    /* product */
+
+        #product{
+            margin-bottom: 10%;
+        }
+
+        .product-text{
+            display: flex;
+            text-align: center;
+            justify-content: center;
+            flex-direction: column;
+            margin-bottom: 5%;
+            font-family: "Staatliches", sans-serif;
+            font-weight: 400;
+            margin-top: 10%;
+            font-style: normal;
+        }
+
+        .product-text h1{
+            font-size: 40px;
+            color: var(--text-color);
+        }
+
+        .product-text p{
+            font-size: 20px;
+            color: var(--text-color);
+        }
+
+        .product-image img{
+            width: 400px;
+            height: 520px;
+          user-select: none;
+        }
+        .product-image{
+            display: flex;
+            gap: 2%;
+           
+         
+        }
+
+        .product-main{
+            margin: 2%;
+          
+        }
+
+    /* end product */
+
+
+    /* footer */
 
     .footer {
         background-color: #f8f8f8; /* Warna latar belakang footer */
@@ -370,7 +434,26 @@ body{
     .social-media a {
         display: inline-block;
         margin-right: 10px;
+        color: black;
+        font-size: 30px;
+        transition: transform 0.5s ease-in-out;
     }
+
+    .social-media a:first-child:hover {
+        color: red;
+        transform: scale(1.2);
+
+    }
+
+    .social-media a:nth-child(2):hover {
+        color: blue;
+        transform: scale(1.2);
+    }
+    .social-media a:nth-child(3):hover {
+        color: rgb(0, 195, 255);
+        transform: scale(1.2);
+    }
+    
     
     .social-media a img {
         width: 24px;
@@ -389,3 +472,5 @@ body{
     .follow{
         padding-top: 35px;
     }
+
+    /* footer */
