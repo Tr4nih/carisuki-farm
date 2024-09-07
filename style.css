@@ -113,7 +113,7 @@ body{
 }
 
 .navbar {
-    transition: top 0.3s ease-in-out;
+    /* transition: top 0.3s ease-in-out; */
     display: flex;
     text-align: center;
     justify-content: space-around;
@@ -262,11 +262,12 @@ body{
         font-style: normal;
         letter-spacing: 0.05em;
         margin: 10% auto; /* Ubah ini */
-        margin-bottom: 15%;
+        margin-bottom: 9%;
     }
 
     .home-title h1{
         margin-bottom: 5%;
+        font-size: 50px;
     }
 
   /* home title*/
@@ -285,8 +286,8 @@ body{
 
 .home-image img, .product-image img {
     display: inline-block;
-    width: 200px; 
-  
+      
+
 }
 
 
@@ -312,6 +313,7 @@ body{
     }
     .home-location-text h1{
         margin-bottom: 5%;
+        font-size: 45px;
     }
 
     .home-location-text p:nth-child(4){
@@ -326,9 +328,10 @@ body{
 
     .home-image img{
         width: 50%;
-      user-select: none;
+        height: 63vh;
+        object-fit: cover;
+        user-select: none;
     }
-
 
     /* product */
 
