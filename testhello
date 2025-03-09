@@ -1,0 +1,158 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <time.h>
+
+#define MAX_NAME 50
+#define MAX_ITEMS 5
+
+typedef struct {
+    int id;
+    char nama[MAX_NAME];
+    int jumlah_barang;
+    float harga;
+    float diskon;
+} Item;
+
+void buatTabel(Item items[], int n) {
+    printf("==========================================\n");
+    printf("| ID  | Nama Barang      | Harga         |\n");
+    printf("==========================================\n");
+    for (int i = 0; i < n; i++) {
+        printf("| %-3d | %-15s  | Rp%-10.0f  |\n", items[i].id, items[i].nama, items[i].harga);
+    }
+    printf("==========================================\n");
+    printf("99 Reset Pilihan\n");
+    printf("11 Cetak Struk\n");
+    printf("00 Keluar\n");
+    printf("==========================================\n");
+}
+
+float hitungDiskon(int jumlah_barang, float harga) {
+    if (jumlah_barang >= 5) return 0.15 * harga * jumlah_barang;
+    else if (jumlah_barang >= 3) return 0.10 * harga * jumlah_barang;
+    return 0;
+}
+
+void urutkanBarang(Item items[], int n) {
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = 0; j < n - i - 1; j++) {
+            if (items[j].jumlah_barang < items[j + 1].jumlah_barang) {
+                Item temp = items[j];
+                items[j] = items[j + 1];
+                items[j + 1] = temp;
+            }
+        }
+    }
+}
+
+void tampilkanTransaksi(Item items[], int n, int totalHarga, int totalDiskon, int totalBayar) {
+    urutkanBarang(items, n);
+    printf("============ DAFTAR BELANJA ============\n");
+    printf("========================================\n");
+    printf("| Nama Barang   | Jumlah | Total Harga |\n");
+    printf("========================================\n");
+
+    for (int i = 0; i < n; i++) {
+        if (items[i].jumlah_barang > 0) {
+            printf("| %-13s | %-6d | Rp%-10.0f |\n", items[i].nama, items[i].jumlah_barang, items[i].harga * items[i].jumlah_barang);
+        }
+    }
+    printf("========================================\n");
+    printf("| TOTAL HARGA   : Rp%-10d |\n", totalHarga);
+    printf("| TOTAL DISKON  : Rp%-10d |\n", totalDiskon);
+    printf("| TOTAL TAGIHAN : Rp%-10d |\n", totalBayar);
+    printf("========================================\n");
+}
+
+void buatStruk(Item items[], int n, int totalHarga, int totalDiskon, int totalBayar, int bayar) {
+    time_t t = time(NULL);
+    struct tm tm = *localtime(&t);
+    char filename[50];
+    snprintf(filename, sizeof(filename), "%d%02d%02d%02d%02d%02d.txt",
+             tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
+
+    FILE *file = fopen(filename, "w");
+    if (file == NULL) {
+        printf("GAGAL MENYIMPAN FILE!\n");
+        return;
+    }
+
+    fprintf(file, "=============== STRUK PEMBAYARAN ===============\n");
+    fprintf(file, "Tanggal: %d-%02d-%02d %02d:%02d:%02d\n",
+            tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
+    fprintf(file, "===========================================\n");
+    urutkanBarang(items, n);
+    for (int i = 0; i < n; i++) {
+        if (items[i].jumlah_barang > 0) {
+            float total = items[i].jumlah_barang * items[i].harga;
+            fprintf(file, "%-15s | Rp%-5.0f | %-6d | Rp%-5.0f | Rp%-5.0f\n",
+                    items[i].nama, items[i].harga, items[i].jumlah_barang, total, items[i].diskon);
+        }
+    }
+    fprintf(file, "===========================================\n");
+    fprintf(file, "TOTAL HARGA  : Rp%-10d\n", totalHarga);
+    fprintf(file, "TOTAL DISKON : Rp%-10d\n", totalDiskon);
+    fprintf(file, "TOTAL TAGIHAN: Rp%-10d\n", totalBayar);
+    fprintf(file, "BAYAR        : Rp%-10d\n", bayar);
+    fprintf(file, "KEMBALIAN    : Rp%-10d\n", bayar - totalBayar);
+    fprintf(file, "===========================================\n");
+    fclose(file);
+    printf("Struk berhasil dicetak di %s\n", filename);
+}
+
+int main() {
+    Item items[MAX_ITEMS] = {
+        {1, "BUKU", 0, 5000, 0},
+        {2, "PENGGARIS", 0, 4000, 0},
+        {3, "PULPEN", 0, 3000, 0},
+        {4, "PENGHAPUS", 0, 2000, 0},
+        {5, "PENSIL", 0, 1000, 0},
+    };
+
+    int totalHarga, totalDiskon, totalBayar, bayar;
+    int id, jumlah;
+
+    while (1) {
+        totalHarga = totalDiskon = totalBayar = 0;
+        for (int i = 0; i < MAX_ITEMS; i++) {
+            items[i].jumlah_barang = 0;
+        }
+        buatTabel(items, MAX_ITEMS);
+        while (1) {
+            printf("Maukan ID Barang: ");
+            scanf("%d", &id);
+            if (id == 0) return 0;
+            if (id == 99) {
+                for (int i = 0; i < MAX_ITEMS; i++) {
+                    items[i].jumlah_barang = 0;
+                }
+                printf("Pilihan telah direset!\n");
+                continue;
+            }
+            if (id == 11) {
+                totalBayar = totalHarga - totalDiskon;
+                tampilkanTransaksi(items, MAX_ITEMS, totalHarga, totalDiskon, totalBayar);
+                break;
+            }
+            if (id < 1 || id > MAX_ITEMS) {
+                printf("ID Tidak Valid!\n");
+                continue;
+            }
+            printf("MAasukan Jumlah %s: ", items[id - 1].nama);
+            scanf("%d", &jumlah);
+            items[id - 1].jumlah_barang += jumlah;
+            totalHarga += items[id - 1].harga * jumlah;
+            totalDiskon += hitungDiskon(jumlah, items[id - 1].harga);
+        }
+
+        printf("Masukan Uang Dibayar: ");
+        scanf("%d", &bayar);
+        while (bayar < totalBayar) {
+            printf("Uang Kurang! Masukan Kembali: ");
+            scanf("%d", &bayar);
+        }
+        buatStruk(items, MAX_ITEMS, totalHarga, totalDiskon, totalBayar, bayar);
+    }
+    return 0;
+}
